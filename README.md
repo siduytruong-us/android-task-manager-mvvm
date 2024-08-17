@@ -10,7 +10,7 @@ of Android development by providing regular news updates.
 
 # Demo 
 
-![Application Demo](https://github.com/siduytruong-us/task-manager/blob/main/github/app_demo.gif)
+![Application Demo](./github//app_demo.gif)
 
 # Features
 
@@ -29,4 +29,4 @@ Based on these principles:
 ## Modules
 
 
- <img src="images/AndroidTemplate-CleanArchitecture.jpg" alt="ArchiTecture logo"/>
+ <img src="./github/MVVM.png" alt="ArchiTecture logo"/>
