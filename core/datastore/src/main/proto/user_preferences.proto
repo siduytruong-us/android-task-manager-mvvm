@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "dark_theme_config.proto";
+import "theme_brand.proto";
+
+option java_package = "com.duyts.tasks.core.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+    ThemeBrandProto theme_brand = 16;
+    DarkThemeConfigProto dark_theme_config = 17;
+    bool use_dynamic_color = 19;
+}

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "947292320920",
+    "project_id": "tasksmanager-aac4b",
+    "storage_bucket": "tasksmanager-aac4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947292320920:android:4ebbaeb3bc929115ac8ced",
+        "android_client_info": {
+          "package_name": "com.duyts.tasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947292320920-mb4nkb4e5psirlihjfvgh3vu67ogg1ot.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duyts.tasks",
+            "certificate_hash": "7ddd5e3e4099219b53c203ac2d0ba9465d93cf78"
+          }
+        },
+        {
+          "client_id": "947292320920-mu1vb87hdma87qbh03m59dgt5e5774gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZd2Xn7fuKVfBGxmpCiojyd_W6IXAsw0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947292320920-mu1vb87hdma87qbh03m59dgt5e5774gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

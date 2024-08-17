@@ -1,0 +1,78 @@
+[versions]
+androidxLifecycle = "2.8.4"
+activityCompose = "1.9.0"
+agp = "8.3.2"
+androidxNavigation = "2.7.7"
+appcompat = "1.7.0"
+composeBom = "2024.06.00"
+coreKtx = "1.13.1"
+coreSplashscreen = "1.0.1"
+datastore = "1.1.1"
+espressoCore = "3.5.1"
+firebaseAuthKtx = "23.0.0"
+firebaseBom = "33.1.1"
+glide = "4.14.2"
+glideCompose = "1.0.0-beta01"
+googleServices = "4.4.2"
+hilt = "2.51"
+hiltLifecycleViewmodel = "1.0.0-alpha03"
+hiltNavigationCompose = "1.2.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+kotlin = "1.9.0"
+ksp = "1.9.10-1.0.13"
+lifecycleRuntimeKtx = "2.8.0"
+material3 = "1.2.1"
+material = "1.12.0"
+playServicesAuth = "21.2.0"
+protobuf = "3.25.2"
+protobufPlugin = "0.9.4"
+roomVersion = "2.6.1"
+lifecycleRuntimeComposeAndroid = "2.8.4"
+[libraries]
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "protobuf" }
+protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "protobuf" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+

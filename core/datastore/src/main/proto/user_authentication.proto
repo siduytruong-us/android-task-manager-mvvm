@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.duyts.tasks.core.datastore";
+option java_multiple_files = true;
+
+message UserAuthentication {
+    string email = 1;
+    string password_hash = 2;
+    string auth_token = 3;
+    string display_name= 4;
+    string photo_url = 5;
+}

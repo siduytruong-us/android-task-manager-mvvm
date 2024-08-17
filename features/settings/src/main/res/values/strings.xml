@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Tasks</string>
+    <string name="alert_loading">Loading…</string>
+    <string name="alert_dialog_title">Settings</string>
+    <string name="alert_dialog_theme_section">Theme</string>
+    <string name="alert_dialog_theme_android_item">Android</string>
+    <string name="alert_dialog_theme_default_item">Default</string>
+
+    <string name="alert_dialog_dynamic_section">Use dynamic color</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="alert_dialog_dark_mode_section">Dark mode preference</string>
+    <string name="system_default">System Default</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+</resources>
