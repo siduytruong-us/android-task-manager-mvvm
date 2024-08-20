@@ -56,9 +56,9 @@ fun LoginScreen(
 	val startForResult =
 		rememberLauncherForActivityResult(
 			contract = GoogleAuthResultContract()
-		) { task ->
+		) { token ->
 
-			loginViewModel.loginWithGoogle(task)
+			loginViewModel.loginWithGoogle(token)
 			onAuthSuccess.invoke()
 		}
 	LaunchedEffect(uiState.isAuthenticated) {

@@ -18,10 +18,7 @@ android {
 }
 
 dependencies {
-	api(project(":core:common"))
 	api(project(":core:database"))
-	api(project(":core:datastore"))
-	api(project(":core:firebase"))
 	ksp(libs.hilt.compiler)
 
 

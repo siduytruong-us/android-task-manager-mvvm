@@ -40,7 +40,7 @@ protobuf {
 
 dependencies {
 	api(project(":core:common"))
-	api(project(":core:database"))
+
 
 	//DataStore - Proto
 	implementation  (libs.androidx.datastore)

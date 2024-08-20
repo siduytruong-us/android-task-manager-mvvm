@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.duyts.core.common.network.AppDispatchers
 import com.duyts.core.common.network.Dispatcher
 import com.duyts.core.data.repository.AuthenticateRepositoryImpl
-import com.duyts.core.firebase.model.AppGoogleSignInAccount
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,11 +47,11 @@ class LoginViewModel @Inject constructor(
 	}
 
 
-	fun loginWithGoogle(result: AppGoogleSignInAccount?) = viewModelScope.launch {
+	fun loginWithGoogle(token: String?) = viewModelScope.launch {
 		_loginUiState.apply {
 			update { it.copy(isLoading = true) }
-			result?.let { account ->
-				authenticateRepo.loginWithGoogle(account)
+			token?.let { account ->
+				authenticateRepo.loginWithToken(account)
 			}
 			update { it.copy(isLoading = false) }
 		}

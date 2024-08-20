@@ -1,5 +1,6 @@
 package com.duyts.features.home.ui.home
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,8 @@ import com.duyts.core.data.repository.TaskRepositoryImpl
 import com.duyts.features.home.TasksFilterType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -18,13 +21,13 @@ private const val TASKS_FILTER_SAVED_STATE_KEY = "TASKS_FILTER_SAVED_STATE_KEY"
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
 	private val tasksRepository: TaskRepositoryImpl,
-	private val savedStateHandle: SavedStateHandle
+	private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 	private val _filterType = savedStateHandle.getStateFlow(
 		TASKS_FILTER_SAVED_STATE_KEY,
 		TasksFilterType.ALL_TASKS
 	)
-	private val _tasksUiState =
+	private val _tasksUiState: StateFlow<HomeUiState> =
 		combine(tasksRepository.observeAll(), _filterType) { list, type ->
 			HomeUiState.Success(filterTask(list, type))
 		}.stateIn(
@@ -50,10 +53,20 @@ class HomeScreenViewModel @Inject constructor(
 	fun completeTask(task: Task, isChecked: Boolean) = viewModelScope.launch {
 		tasksRepository.update(task.copy(isCompleted = isChecked))
 	}
+
+	fun sync() = viewModelScope.launch {
+		tasksRepository.sync()
+			.catch {
+				Log.d("DUYTS", it.message.orEmpty())
+			}
+			.collect {
+				Log.d("DUYTS", "Success")
+			}
+	}
 }
 
 sealed class HomeUiState {
 	data object Error : HomeUiState()
 	data object Loading : HomeUiState()
-	data class Success(val tasks: List<Task>) : HomeUiState()
+	data class Success(val tasks: List<Task>, val toastMessage: String = "") : HomeUiState()
 }

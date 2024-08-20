@@ -18,11 +18,13 @@ android {
 }
 
 dependencies {
-	api(project(":core:common"))
+	api(project(":core:firebase"))
+	api(project(":core:datastore"))
 	//Room
 	implementation(libs.room.runtime)
 	implementation(libs.room.ktx)
 	ksp(libs.androidx.room.compiler)
 	//Hilt
 	ksp(libs.hilt.compiler)
+
 }

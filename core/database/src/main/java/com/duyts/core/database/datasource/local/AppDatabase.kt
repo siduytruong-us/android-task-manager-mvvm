@@ -1,9 +1,9 @@
-package com.duyts.core.database
+package com.duyts.core.database.datasource.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.duyts.core.database.dao.TaskDao
-import com.duyts.tasks.datasource.entity.TaskEntity
+import com.duyts.core.database.datasource.local.dao.TaskDao
+import com.duyts.core.database.datasource.local.entity.TaskEntity
 
 @Database(
 	entities = [TaskEntity::class], version = 1

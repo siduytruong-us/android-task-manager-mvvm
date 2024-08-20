@@ -16,4 +16,5 @@ data class UserAuthData(
 	val authToken: String,
 	val displayName: String,
 	val photoUrl: String,
+	val uid: String,
 )

@@ -1,8 +1,8 @@
-package com.duyts.core.database.di
+package com.duyts.core.database.datasource.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.duyts.core.database.AppDatabase
+import com.duyts.core.database.datasource.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

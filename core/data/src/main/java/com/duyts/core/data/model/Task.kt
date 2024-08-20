@@ -1,6 +1,7 @@
 package com.duyts.core.data.model
 
-import com.duyts.tasks.datasource.entity.TaskEntity
+import com.duyts.core.database.datasource.firestore.entity.TaskFirestoreEntity
+import com.duyts.core.database.datasource.local.entity.TaskEntity
 import java.util.UUID
 
 data class Task(
@@ -13,3 +14,5 @@ data class Task(
 fun TaskEntity.toModel() = Task(id, title, description, isCompleted)
 fun Task.toEntity() = TaskEntity(id, title.orEmpty(), description.orEmpty(), isCompleted)
 
+fun Task.toFirestoreEntity() = TaskFirestoreEntity(id, title.orEmpty(), description.orEmpty(), isCompleted)
+fun TaskFirestoreEntity.toModel() = Task(id, title, description, isCompleted)

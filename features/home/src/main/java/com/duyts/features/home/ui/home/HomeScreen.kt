@@ -1,6 +1,7 @@
 package com.duyts.features.home.ui.home
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -34,9 +36,10 @@ import com.duyts.features.home.TasksFilterType
 fun HomeScreen(
 	tasksViewModel: HomeScreenViewModel = hiltViewModel(),
 	onAddTask: () -> Unit = {},
-	onTaskClick: (taskId: String?) -> Unit = {}
+	onTaskClick: (taskId: String?) -> Unit = {},
 ) {
 	val uiState by tasksViewModel.taskUiState.collectAsState()
+
 	Scaffold(
 		modifier = Modifier.fillMaxSize(),
 		topBar = {
@@ -49,7 +52,7 @@ fun HomeScreen(
 		floatingActionButton = {
 			FloatingActionButton(
 				modifier = Modifier.padding(20.dp),
-				onClick = { onAddTask() }
+				onClick = { tasksViewModel.sync() }
 			) {
 				Icon(imageVector = Icons.Filled.Add, contentDescription = null)
 			}
@@ -60,12 +63,13 @@ fun HomeScreen(
 	) { paddingValues ->
 		when (uiState) {
 			is HomeUiState.Success -> {
+				val tasks = (uiState as HomeUiState.Success).tasks
 				LazyColumn(
 					modifier = Modifier
 						.fillMaxSize()
 						.padding(paddingValues)
 				) {
-					val tasks = (uiState as HomeUiState.Success).tasks
+
 					items(tasks) {
 						TaskItem(
 							it, onTaskClick = onTaskClick,

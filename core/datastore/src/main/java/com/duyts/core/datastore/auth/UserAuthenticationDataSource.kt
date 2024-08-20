@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import com.duyts.core.datastore.model.UserAuthData
 import com.duyts.tasks.core.datastore.UserAuthentication
 import com.duyts.tasks.core.datastore.copy
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
@@ -12,13 +13,14 @@ import javax.inject.Inject
 class UserAuthenticationDataSource @Inject constructor(
 	private val userAuthentication: DataStore<UserAuthentication>
 ) {
-	val data = userAuthentication.data.map { userAuth ->
+	val data: Flow<UserAuthData> = userAuthentication.data.map { userAuth ->
 		UserAuthData(
 			email = userAuth.email,
 			passwordHash = userAuth.passwordHash,
 			displayName = userAuth.displayName,
 			authToken = userAuth.authToken,
-			photoUrl = userAuth.photoUrl
+			photoUrl = userAuth.photoUrl,
+			uid = userAuth.uid
 		)
 	}
 
@@ -31,6 +33,18 @@ class UserAuthenticationDataSource @Inject constructor(
 			}
 		} catch (ioException: IOException) {
 			Log.e("UserPreferences", "Failed to update user email preferences", ioException)
+		}
+	}
+
+	suspend fun setUid(uid: String?) {
+		try {
+			userAuthentication.updateData {
+				it.copy {
+					this.uid = uid.orEmpty()
+				}
+			}
+		} catch (ioException: IOException) {
+			Log.e("UserPreferences", "Failed to update user uid preferences", ioException)
 		}
 	}
 
@@ -58,17 +72,17 @@ class UserAuthenticationDataSource @Inject constructor(
 		}
 	}
 
-	suspend fun setAccessToken(token: String?) {
-		try {
-			userAuthentication.updateData {
-				it.copy {
-					this.authToken = token.orEmpty()
-				}
-			}
-		} catch (ioException: IOException) {
-			Log.e("UserPreferences", "Failed to update user email preferences", ioException)
-		}
-	}
+//	suspend fun setAccessToken(token: String?) {
+//		try {
+//			userAuthentication.updateData {
+//				it.copy {
+//					this.authToken = token.orEmpty()
+//				}
+//			}
+//		} catch (ioException: IOException) {
+//			Log.e("UserPreferences", "Failed to update user email preferences", ioException)
+//		}
+//	}
 
 	suspend fun clear() {
 		userAuthentication.updateData { it.toBuilder().clear().build() }

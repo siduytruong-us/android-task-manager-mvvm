@@ -1,7 +1,6 @@
 package com.duyts.core.data.repository
 
 import com.duyts.core.datastore.model.UserAuthData
-import com.duyts.core.firebase.model.AppGoogleSignInAccount
 import kotlinx.coroutines.flow.Flow
 
 interface AuthenticateRepository {
@@ -9,5 +8,5 @@ interface AuthenticateRepository {
 	fun getUserData(): Flow<UserAuthData>
 	fun isAuthenticated(): Flow<Boolean>
 	suspend fun logout()
-	suspend fun loginWithGoogle(account: AppGoogleSignInAccount)
+	suspend fun loginWithToken(token: String): Result<Boolean>
 }

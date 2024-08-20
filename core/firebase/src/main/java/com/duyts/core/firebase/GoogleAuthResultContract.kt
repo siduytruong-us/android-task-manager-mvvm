@@ -10,22 +10,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 
-class GoogleAuthResultContract : ActivityResultContract<Int, AppGoogleSignInAccount?>() {
+class GoogleAuthResultContract : ActivityResultContract<Int, String?>() {
 	override fun createIntent(context: Context, input: Int): Intent =
 		getGoogleSignInClient(context).signInIntent.putExtra("input", input)
 
-	override fun parseResult(resultCode: Int, intent: Intent?): AppGoogleSignInAccount? =
+	override fun parseResult(resultCode: Int, intent: Intent?): String? =
 		when (resultCode) {
-			Activity.RESULT_OK -> GoogleSignIn.getSignedInAccountFromIntent(intent)
-				.getResult(ApiException::class.java)?.let {
-					AppGoogleSignInAccount(
-						id = it.id,
-						displayName = it.displayName,
-						email = it.email,
-						photoUrl = it.photoUrl,
-						expired = it.isExpired,
-					)
-				}
+			Activity.RESULT_OK ->
+				GoogleSignIn.getSignedInAccountFromIntent(intent)
+					.getResult(ApiException::class.java)?.idToken
 
 			else -> null
 		}
@@ -34,8 +27,8 @@ class GoogleAuthResultContract : ActivityResultContract<Int, AppGoogleSignInAcco
 
 fun getGoogleSignInClient(context: Context): GoogleSignInClient {
 	val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//         Request id token if you intend to verify google user from your backend server
-//        .requestIdToken(context.getString(R.string.backend_client_id))
+		.requestIdToken(context.getString(R.string.default_web_client_id))
+		.requestProfile()
 		.requestEmail()
 		.build()
 

@@ -1,4 +1,4 @@
-package com.duyts.tasks.datasource.entity
+package com.duyts.core.database.datasource.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -21,10 +21,10 @@ class AuthenticateRepositoryImpl @Inject constructor(
 		backgroundScope.async {
 			try {
 				appFirebase.signInWithEmailAndPassword(email, password)?.let { authUser ->
+						userAuthDataStore.setUid(authUser.id)
 						userAuthDataStore.setEmail(authUser.email)
 						userAuthDataStore.setDisplayName(authUser.displayName)
 						userAuthDataStore.setPhotoUrl(authUser.photoUrl?.encodedPath)
-						userAuthDataStore.setAccessToken("NOT IMPLEMENTED")
 						Result.success(true)
 					} ?: Result.failure(Exception("No user login data!"))
 			} catch (e: Exception) {
@@ -42,9 +42,20 @@ class AuthenticateRepositoryImpl @Inject constructor(
 		appFirebase.logout()
 	}
 
-	override suspend fun loginWithGoogle(account: AppGoogleSignInAccount) = account.run {
-		userAuthDataStore.setEmail(email)
-		userAuthDataStore.setDisplayName(displayName)
-		userAuthDataStore.setPhotoUrl(photoUrl?.toString())
-	}
+
+
+	override suspend fun loginWithToken(token: String): Result<Boolean> =
+		backgroundScope.async {
+			try {
+				appFirebase.signInWithToken(token)?.let { authUser ->
+					userAuthDataStore.setUid(authUser.id)
+					userAuthDataStore.setEmail(authUser.email)
+					userAuthDataStore.setDisplayName(authUser.displayName)
+					userAuthDataStore.setPhotoUrl(authUser.photoUrl?.encodedPath)
+					Result.success(true)
+				} ?: Result.failure(Exception("No user login data!"))
+			} catch (e: Exception) {
+				Result.failure(e)
+			}
+		}.await()
 }

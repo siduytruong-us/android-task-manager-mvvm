@@ -25,4 +25,7 @@ dependencies {
 
 	api(project(":core:common"))
 	ksp(libs.hilt.compiler)
+
+
+	api("com.google.firebase:firebase-firestore:25.0.0")
 }

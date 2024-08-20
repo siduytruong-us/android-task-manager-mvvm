@@ -9,4 +9,5 @@ message UserAuthentication {
     string auth_token = 3;
     string display_name= 4;
     string photo_url = 5;
+    string uid = 6;
 }
