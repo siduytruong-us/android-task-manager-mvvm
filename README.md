@@ -26,7 +26,10 @@ Based on these principles:
 - 
 - 
 
-## Modules
-
+## Architecture
 
  <img src="./github/MVVM.png" alt="ArchiTecture logo"/>
+
+ ## Module Dependencies
+
+ <img src="./github/modules_deps.png" alt="Module Dependencies logo"/>
